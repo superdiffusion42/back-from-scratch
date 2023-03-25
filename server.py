@@ -14,9 +14,16 @@ api = Sanic("test_api")
 async def health(request):
     return text("OK")
 
-@api.get("/prompt")
-async def prompt(request):
-    return text("OK")
+@api.post("/generate")
+async def generate(request):
+    try:
+        model_inputs = response.json.loads(request.json)
+    except:
+        model_inputs = request.json
+
+    output = prompt.generate(model_inputs)
+
+    return response.json(output)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
