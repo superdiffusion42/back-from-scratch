@@ -1,13 +1,20 @@
+from dotenv import load_dotenv
 from sanic import Sanic
 from sanic.response import text
 
-server = Sanic("test_api")
+import prompt as prompt
 
-@server.get("/health")
+load_dotenv()
+
+prompt.loadPretrainedModelFromHuggingFace()
+
+api = Sanic("test_api")
+
+@api.get("/health")
 async def health(request):
     return text("OK")
 
-@server.get("/prompt")
+@api.get("/prompt")
 async def prompt(request):
     return text("OK")
 
