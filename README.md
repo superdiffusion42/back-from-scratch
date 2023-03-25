@@ -28,3 +28,11 @@ In another terminal
 curl http://127.0.0.1:8000/health
 ```
 
+### 5. Call /generate route with payload
+```
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "a bucket in a field of grass"}' \
+  http://127.0.0.1:8000/generate
+```
+
